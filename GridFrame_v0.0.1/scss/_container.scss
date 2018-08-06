@@ -1,0 +1,288 @@
+[class*="-h-"] {
+    // Transition for all element
+    transition: all $transition;
+    
+    &:after, &:before {
+        transition: all $transition;
+    }
+}
+
+/* 
+    Creat the basic element container for easier use simply element, but limited the dev position for this placement.
+
+    Force the footer to be bottom and main to grow full size
+
+    The header can't be fixed, to be evolve
+*/
+
+.container {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    min-height: 100vh;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 100% auto;
+
+    header {
+        width: 100%;
+        grid-row-start: 1; 
+        grid-column: span 3;
+    }
+
+    main {
+        width: 100%;
+        grid-row-start: 2;
+        grid-column: span 3;
+    }
+    
+    .header-v {
+        grid-row-start: 1;
+        grid-row-end: 4;
+        grid-column: span 1;
+        
+        & ~ main {
+            grid-row-start: 1;
+            grid-row-end: 3;
+        }
+    }
+
+    footer {
+        width: 100%;
+        grid-row-start: 3;
+        grid-column: span 3;
+    }
+    
+    .content {
+        height: 100%;
+        max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* 
+
+    Creat auto the element of supp, padding, order, height, width, spacer, can add what you need creat element with all breakpoint.
+
+*/
+
+@each $break_name, $break in $breakpoint {
+    @if $break_name != "" {
+        @media (min-width: #{$break}) {
+            /* Order for flex element order. */
+
+            @for $i from 0 through $nb-columns  {
+                .order-#{$break_name}#{$i} {
+                    order: #{$i};
+                }
+            }
+
+            /* Padding */
+
+            @for $i from 0 through 4  {
+                $y : $i * $referent-pixel;
+                .p-#{$break_name}#{$y} {
+                    padding: $i * $gutter !important;
+                }
+                .p-t-#{$break_name}#{$y} {
+                    padding-top: $i * $gutter !important;
+                }
+                .p-l-#{$break_name}#{$y} {
+                    padding-left: $i * $gutter !important;
+                }
+                .p-b-#{$break_name}#{$y} {
+                    padding-bottom: $i * $gutter !important;
+                }
+                .p-r-#{$break_name}#{$y} {
+                    padding-right: $i * $gutter !important;
+                }
+            }
+
+            /* Margin */
+
+            @for $i from 0 through 4  {
+                $y : $i * $referent-pixel;
+                .m-#{$break_name}#{$y} {
+                    margin: $i * $gutter !important;
+                }
+                .m-t-#{$break_name}#{$y} {
+                    margin-top: $i * $gutter !important;
+                }
+                .m-l-#{$break_name}#{$y} {
+                    margin-left: $i * $gutter !important;
+                }
+                .m-b-#{$break_name}#{$y} {
+                    margin-bottom: $i * $gutter !important;
+                }
+                .m-r-#{$break_name}#{$y} {
+                    margin-right: $i * $gutter !important;
+                }
+
+                .m-minus-#{$break_name}#{$y} {
+                    margin: -$i * $gutter !important;
+                }
+                .m-t-minus-#{$break_name}#{$y} {
+                    margin-top: -$i * $gutter !important;
+                }
+                .m-l-minus-#{$break_name}#{$y} {
+                    margin-left: -$i * $gutter !important;
+                }
+                .m-b-minus-#{$break_name}#{$y} {
+                    margin-bottom: -$i * $gutter !important;
+                }
+                .m-r-minus-#{$break_name}#{$y} {
+                    margin-right: -$i * $gutter !important;
+                }
+            }
+
+            /* Height in VH */
+
+            @for $i from 1 through 10  {
+                .h-#{$break_name}#{$i}0 {
+                    min-height: #{$i}0vh !important;
+                }
+            }
+
+            /* Width in % */
+
+            @for $i from 1 through 10  {
+                .w-#{$break_name}#{$i}0 {
+                    min-width: #{$i}0% !important;
+                }
+            }
+        }
+    } @else {
+        
+        /* Order for flex element order. */
+        
+        @for $i from 0 through $nb-columns  {
+            .order-#{$i} {
+                order: #{$i};
+            }
+        }
+        
+        /* Padding */
+
+        @for $i from 0 through 4  {
+            $y : $i * $referent-pixel;
+            .p-#{$y} {
+                padding: $i * $gutter !important;
+            }
+            .p-t-#{$y} {
+                padding-top: $i * $gutter !important;
+            }
+            .p-l-#{$y} {
+                padding-left: $i * $gutter !important;
+            }
+            .p-b-#{$y} {
+                padding-bottom: $i * $gutter !important;
+            }
+            .p-r-#{$y} {
+                padding-right: $i * $gutter !important;
+            }
+        }
+        
+        /* Margin */
+        
+        @for $i from 0 through 4  {
+            $y : $i * $referent-pixel;
+            .m-#{$y} {
+                margin: $i * $gutter !important;
+            }
+            .m-t-#{$y} {
+                margin-top: $i * $gutter !important;
+            }
+            .m-l-#{$y} {
+                margin-left: $i * $gutter !important;
+            }
+            .m-b-#{$y} {
+                margin-bottom: $i * $gutter !important;
+            }
+            .m-r-#{$y} {
+                margin-right: $i * $gutter !important;
+            }
+            
+            .m-minus-#{$y} {
+                margin: -$i * $gutter !important;
+            }
+            .m-t-minus-#{$y} {
+                margin-top: -$i * $gutter !important;
+            }
+            .m-l-minus-#{$y} {
+                margin-left: -$i * $gutter !important;
+            }
+            .m-b-minus-#{$y} {
+                margin-bottom: -$i * $gutter !important;
+            }
+            .m-r-minus-#{$y} {
+                margin-right: -$i * $gutter !important;
+            }
+        }
+        
+        /* Height in VH */
+        
+        @for $i from 1 through 10  {
+            .h-#{$i}0 {
+                min-height: #{$i}0vh !important;
+            }
+        }
+        
+        /* Width in % */
+        
+        @for $i from 1 through 10  {
+            .w-#{$i}0 {
+                min-width: #{$i}0% !important;
+            }
+        }
+    }
+}
+
+/* Border-radius */
+
+@for $i from 0 through 4  {
+    $y : $i * ($referent-pixel / 2);
+    .br-#{$y} {
+        border-radius: $y + 0px !important;
+    }
+    .br-t-#{$y} {
+        border-top-left-radius: $y + 0px !important;
+        border-top-right-radius: $y + 0px !important;
+    }
+    .br-r-#{$y} {
+        border-top-right-radius: $y + 0px !important;
+        border-bottom-right-radius: $y + 0px !important;
+    }
+    .br-b-#{$y} {
+        border-bottom-left-radius: $y + 0px !important;
+        border-bottom-right-radius: $y + 0px !important;
+    }
+    .br-l-#{$y} {
+        border-top-left-radius: $y + 0px !important;
+        border-bottom-left-radius: $y + 0px !important;
+    }
+    .br-t-l-#{$y} {
+        border-top-left-radius: $y + 0px !important;
+    }
+    .br-t-r-#{$y} {
+        border-top-right-radius: $y + 0px !important;
+    }
+    .br-b-l-#{$y} {
+        border-bottom-left-radius: $y + 0px !important;
+    }
+    .br-b-r-#{$y} {
+        border-bottom-right-radius: $y + 0px !important;
+    }
+}
+
+/* box-shadow */
+
+@for $i from 1 through 5 {
+    .s-#{$i} {
+        @include shadow($i);
+    }
+    .s-h-#{$i} {
+        &:hover {
+            @include shadow($i);
+        }
+    }
+}
