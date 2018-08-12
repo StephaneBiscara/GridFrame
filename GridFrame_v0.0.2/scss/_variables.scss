@@ -1,0 +1,129 @@
+/* Breakspoint */
+
+$ms : 240px;
+$ml : 400px;
+$ts : 576px;
+$tl : 768px;
+$ds : 1024px;
+$dl : 1280px;
+
+/* Grids */
+
+$referent-pixel : 8; // use for padding, margin, ... is for define your metrics
+$nb-columns     : 12; // number col and row you can use
+$gutter         : $referent-pixel + 0px; // basic gutter size minimal (+0px) is for forced to use px
+$col-gutter     : $gutter; // basic gutter of columns
+
+/* Fonts */
+
+$font-size-x-small	 : 10px; // h6 --> used
+$font-size-small	 : 12px; // h5 --> used
+$font-size-regular	 : 16px; // h4 --> used
+$font-size-large	 : 24px; // h3 --> used
+$font-size-x-large	 : 32px; // h2 --> used
+$font-size-xx-large  : 48px; // h1 --> used
+$font-size-xxx-large : 64px; // hero --> used
+
+/* Colors */
+
+$red    : hsl(358, 80%, 60%);
+$pink   : hsl(340, 80%, 60%);
+$purple : hsl(280, 80%, 60%);
+$indigo : hsl(260, 80%, 60%);
+$blue   : hsl(220, 80%, 60%);
+$cyan   : hsl(180, 80%, 60%);
+$teal   : hsl(160, 80%, 60%);
+$green  : hsl(140, 80%, 60%);
+$lime   : hsl(100, 80%, 60%);
+$yellow : hsl(60, 80%, 60%);
+$amber  : hsl(40, 80%, 60%);
+$orange : hsl(20, 80%, 60%);
+$brown  : hsl(20, 50%, 50%);
+$black  : hsl(0, 0%, 15%);
+$grey   : hsl(0, 0%, 60%);
+$white  : hsl(0, 0%, 100%);
+
+$whitesmoke  : whitesmoke;
+
+/* Lighten and darken % */
+
+$lighten : 10%;
+$darken  : 12%;
+
+
+/* Transition */
+
+$transition : .3s ease-out;
+
+/* Border */
+
+/* Define on colors system */
+
+$border-style : solid;
+$border-width : 2px;
+
+/* Forms */
+
+/* Button */
+
+$border-radius-button : 4px;
+
+/* Input */
+
+//you can define what you want, for exemple box-shadow.
+$border-position-input : border-bottom;
+$border-style-input    : solid 1px;
+$border-style-color    : lighten($grey, $lighten);
+
+/* Checkbox Radio */
+
+// Checkbox & Radio
+
+$style-check              : background;
+$style-check-items        : null;
+$style-check-size         : 16px;
+$style-check-size-checked : 8px;
+$style-check-background   : darken($white, $darken);
+
+// Checkbox 
+$check-radious      : 4px;
+//you can define what you want, for exemple box-shadow.
+$check-border-style : border-bottom;
+$check-border       : solid 1px $grey;
+
+// Radio
+$radio-radious      : 20px;
+//you can define what you want, for exemple box-shadow.
+$radio-border-style : border-bottom;
+$radio-border       : solid 1px $grey;
+
+// Checkbox & Radio on hover
+
+$style-check-hover        : border-bottom;
+$style-check-hover-type   : solid 1px;
+$style-check-hover-color  : $black;
+
+/* header */
+
+$header-height : 50px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

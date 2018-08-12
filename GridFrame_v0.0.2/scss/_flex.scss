@@ -1,0 +1,193 @@
+/* Define all flex element with the breakpoint */
+
+$rowsIgnored:
+    '.start',
+    '.ms-start',
+    '.ml-start',
+    '.ts-start',
+    '.tl-start',
+    '.ds-start',
+    '.dl-start',
+    '.end',
+    '.ms-end',
+    '.ml-end',
+    '.ts-end',
+    '.tl-end',
+    '.ds-end',
+    '.dl-end',
+    '.center',
+    '.ms-center',
+    '.ml-center',
+    '.ts-center',
+    '.tl-center',
+    '.ds-center',
+    '.dl-center',
+    '.middle',
+    '.ms-middle',
+    '.ml-middle',
+    '.ts-middle',
+    '.tl-middle',
+    '.ds-middle',
+    '.dl-middle',
+    '.around',
+    '.ms-around',
+    '.ml-around',
+    '.ts-around',
+    '.tl-around',
+    '.ds-around',
+    '.dl-around',
+    '.between',
+    '.ms-between',
+    '.ml-between',
+    '.ts-between',
+    '.tl-between',
+    '.ds-between',
+    '.dl-between',
+    '.evenly',
+    '.ms-evenly',
+    '.ml-evenly',
+    '.ts-evenly',
+    '.tl-evenly',
+    '.ds-evenly',
+    '.dl-evenly',
+    '.top',
+    '.ms-top',
+    '.ml-top',
+    '.ts-top',
+    '.tl-top',
+    '.ds-top',
+    '.dl-top',
+    '.bottom',
+    '.ms-bottom',
+    '.ml-bottom',
+    '.ts-bottom',
+    '.tl-bottom',
+    '.ds-bottom',
+    '.dl-bottom',
+    '.middle',
+    '.ms-middle',
+    '.ml-middle',
+    '.ts-middle',
+    '.tl-middle',
+    '.ds-middle',
+    '.dl-middle',
+    '.stretch',
+    '.ms-stretch',
+    '.ml-stretch',
+    '.ts-stretch',
+    '.tl-stretch',
+    '.ds-stretch',
+    '.dl-stretch',
+    '.baseline',
+    '.ms-baseline',
+    '.ml-baseline',
+    '.ts-baseline',
+    '.tl-baseline',
+    '.ds-baseline',
+    '.dl-baseline'
+;
+
+@each $break_name, $break in $breakpoint {
+    @if $break_name != "" {
+        @media (min-width: #{$break}) {
+            .#{$break_name}rows {display: flex; flex-flow: row wrap; width: auto;
+                @include not($rowsIgnored) {
+                    width: 100%;
+                    & > * {
+                        flex-grow: 1;
+                    }
+                }
+            }
+            .#{$break_name}columns {display: flex; flex-flow: column wrap; width: auto;
+                @include not($rowsIgnored) {
+                    width: 100% !important;
+                    & > * {
+                        flex-grow: 1;
+                    }
+                }
+            }
+            .#{$break_name}no-wrap  {flex-wrap: nowrap;}
+            
+            .#{$break_name}center   {justify-content: center;}
+            .#{$break_name}between  {justify-content: space-between;}
+            .#{$break_name}around   {justify-content: space-around;}
+            .#{$break_name}evenly   {justify-content: space-evenly;}
+            .#{$break_name}start    {justify-content: flex-start;}
+            .#{$break_name}end      {justify-content: flex-end;}
+            .#{$break_name}top      {align-items: flex-start; align-content: flex-start; height: 100%;}
+            .#{$break_name}bottom   {align-items: flex-end;   align-content: flex-end;   height: 100%;}
+            .#{$break_name}middle   {align-items: center;     align-content: center;     height: 100%;}
+            .#{$break_name}stretch  {align-items: stretch;    align-content: stretch;    height: 100%;}
+            .#{$break_name}baseline {align-items: baseline;   align-content: baseline;   height: 100%;}
+
+            .#{$break_name}s-start   {justify-self: start;   flex-grow: 0 !important;}
+            .#{$break_name}s-end     {justify-self: end;     flex-grow: 0 !important;}
+            .#{$break_name}s-center  {justify-self: center;  flex-grow: 0 !important;}
+            .#{$break_name}s-stretch {justify-self: stretch; flex-grow: 0 !important;}
+            .#{$break_name}s-top     {align-self: start;     flex-grow: 0 !important;}
+            .#{$break_name}s-bottom  {align-self: end;       flex-grow: 0 !important;}
+            .#{$break_name}s-middle  {align-self: center;    flex-grow: 0 !important;}
+            .#{$break_name}s-stretch {align-self: stretch;   flex-grow: 0 !important;}
+            
+            .#{$break_name}max-grow   {flex-grow: 99;}
+            .#{$break_name}grow       {flex-grow: 2;}
+            .#{$break_name}max-shrink {flex-shrink: 99;}
+            .#{$break_name}shrink     {flex-shrink: 2;}
+
+            .#{$break_name}order-first { order: -1; }
+            .#{$break_name}order-last  { order: 9999; }
+        }
+    } @else {
+        .rows     {display: flex; flex-flow: row wrap; width: auto;
+            @include not($rowsIgnored) {
+                width: 100% !important;
+                & > * {
+                    flex-grow: 1;
+                }
+            }
+        }
+        .columns  {display: flex; flex-flow: column wrap; width: auto;
+            @include not($rowsIgnored) {
+                width: 100% !important;
+                & > * {
+                    flex-grow: 1;
+                }
+            }
+        }
+        .no-wrap  {flex-wrap: nowrap;}
+        .reverse  {
+            &.rows {
+                flex-direction: row-reverse;
+            }
+            &.columns {
+                flex-direction: column-reverse;
+            }
+        }
+        
+        .center   {justify-content: center;}
+        .between  {justify-content: space-between;}
+        .around   {justify-content: space-around;}
+        .evenly   {justify-content: space-evenly;}
+        .start    {justify-content: flex-start;}
+        .end      {justify-content: flex-end;}
+        .top      {align-items: flex-start; align-content: flex-start; height: 100%;}
+        .bottom   {align-items: flex-end;   align-content: flex-end;   height: 100%;}
+        .middle   {align-items: center;     align-content: center;     height: 100%;}
+        .stretch  {align-items: stretch;    align-content: stretch;    height: 100%;}
+        .baseline {align-items: baseline;   align-content: baseline;   height: 100%;}
+        
+        .s-start    {align-self: flex-start; flex-grow: 0 !important;}
+        .s-end      {align-self: flex-end;   flex-grow: 0 !important;}
+        .s-center   {align-self: center;     flex-grow: 0 !important;}
+        .s-baseline {align-self: baseline;   flex-grow: 0 !important;}
+        .s-stretch  {align-self: stretch;    flex-grow: 0 !important;}
+        
+        .s-max-grow   {flex-grow: 99 !important;}
+        .s-grow       {flex-grow: 2 !important;}
+        .s-max-shrink {flex-shrink: 99 !important;}
+        .s-shrink     {flex-shrink: 2 !important;}
+
+        .order-first { order: -1; }
+        .order-last  { order: 9999; }
+    }
+}

@@ -1,0 +1,122 @@
+/* Défine colors on all style elements */
+
+
+/* Define color name */
+$colors_name: "red", "pink", "purple", "indigo", "blue", "cyan", "teal", "green", "lime", "yellow", "amber", "orange", "brown", "black", "grey", "white";
+
+/* Link color name at color variable (or hex, rgba...) */
+
+$colors: $red, $pink, $purple, $indigo, $blue, $cyan, $teal, $green, $lime, $yellow, $amber, $orange, $brown, $black, $grey, $white;
+
+/* Auto lighten your color, you can change for personnalise your colors */
+
+$colors-lighten: 
+    lighten($red, $lighten), 
+    lighten($pink, $lighten), 
+    lighten($purple, $lighten), 
+    lighten($indigo, $lighten), 
+    lighten($blue, $lighten), 
+    lighten($cyan, $lighten), 
+    lighten($teal, $lighten), 
+    lighten($green, $lighten), 
+    lighten($lime, $lighten), 
+    lighten($yellow, $lighten), 
+    lighten($amber, $lighten), 
+    lighten($orange, $lighten), 
+    lighten($brown, $lighten), 
+    lighten($black, $lighten), 
+    lighten($grey, $lighten), 
+    lighten($white, $lighten);
+
+/* Auto Darken, you can personnalise */
+
+$colors-darken: 
+    darken($red, $darken), 
+    darken($pink, $darken),
+    darken($purple, $darken), 
+    darken($indigo, $darken),
+    darken($blue, $darken), 
+    darken($cyan, $darken), 
+    darken($teal, $darken), 
+    darken($green, $darken),
+    darken($lime, $darken), 
+    darken($yellow, $darken), 
+    darken($amber, $darken), 
+    darken($orange, $darken),
+    darken($brown, $darken),
+    darken($black, $darken), 
+    darken($grey, $darken), 
+    darken($white, $darken);
+
+/* 
+    Nameming of class and creat class colors 
+    The first element is for style
+    The second is naming
+    You can add and change element
+    Update need for delete the probleme, for exemple border is some update for can use
+*/
+
+$colors_style: (
+    "color": "c", 
+    "background-color": "b", 
+    "border": "d"
+);
+
+$colors_style_var: (
+    "#{$border-position-input}": "input",
+    "#{$style-check}": "check"
+);
+
+
+/* Regroupe for auto creat element */
+
+$colors_list: zip($colors_name, $colors, $colors-lighten, $colors-darken);
+
+@each $colors_name, $colors, $colors-l, $colors-d in $colors_list {
+    @each $style, $s in $colors_style {
+        @if $style == "border" {
+            .#{$s}-#{$colors_name}     {#{$style}: $border-style $border-width #{$colors} !important;}
+            .#{$s}-l-#{$colors_name}   {#{$style}: $border-style $border-width #{$colors-l} !important;}
+            .#{$s}-d-#{$colors_name}   {#{$style}: $border-style $border-width #{$colors-d} !important;}
+            .#{$s}-h-#{$colors_name}   {&:hover {#{$style}: $border-style $border-width #{$colors} !important;}}
+            .#{$s}-h-l-#{$colors_name} {&:hover {#{$style}: $border-style $border-width #{$colors-l} !important;}}
+            .#{$s}-h-d-#{$colors_name} {&:hover {#{$style}: $border-style $border-width #{$colors-d} !important;}}
+        } @else {
+            .#{$s}-#{$colors_name}     {#{$style}: #{$colors} !important;}
+            .#{$s}-l-#{$colors_name}   {#{$style}: #{$colors-l} !important;}
+            .#{$s}-d-#{$colors_name}   {#{$style}: #{$colors-d} !important;}
+            .#{$s}-h-#{$colors_name}   {&:hover {#{$style}: #{$colors} !important;}}
+            .#{$s}-h-l-#{$colors_name} {&:hover {#{$style}: #{$colors-l} !important;}}
+            .#{$s}-h-d-#{$colors_name} {&:hover {#{$style}: #{$colors-d} !important;}}
+        }
+    }
+}
+
+@each $colors_name, $colors, $colors-l, $colors-d in $colors_list {
+    @each $style, $s in $colors_style_var {
+        @if $style == "#{$border-position-input}" {
+            .#{$s}-#{$colors_name}     {#{$style}: #{$border-style-input} #{$colors} !important;}
+            .#{$s}-l-#{$colors_name}   {#{$style}: #{$border-style-input} #{$colors-l} !important;}
+            .#{$s}-d-#{$colors_name}   {#{$style}: #{$border-style-input} #{$colors-d} !important;}
+            .#{$s}-h-#{$colors_name}   {&:hover, &:focus {#{$style}: #{$border-style-input} #{$colors} !important;}}
+            .#{$s}-h-l-#{$colors_name} {&:hover, &:focus {#{$style}: #{$border-style-input} #{$colors-l} !important;}}
+            .#{$s}-h-d-#{$colors_name} {&:hover, &:focus {#{$style}: #{$border-style-input} #{$colors-d} !important;}}
+        } @else {
+            .#{$s}-#{$colors_name}:checked + label:after     {#{$style-check}: $style-check-items #{$colors} !important;}
+            .#{$s}-l-#{$colors_name}:checked + label:after   {#{$style-check}: $style-check-items #{$colors-l} !important;}
+            .#{$s}-d-#{$colors_name}:checked + label:after   {#{$style-check}: $style-check-items #{$colors-d} !important;}
+            .#{$s}-h-#{$colors_name}      {&:hover + label:before, &:focus + label:before {#{$style-check-hover}: $style-check-hover-type #{$colors} !important;}}
+            .#{$s}-h-l-#{$colors_name}    {&:hover + label:before, &:focus + label:before {#{$style-check-hover}: $style-check-hover-type #{$colors-l} !important;}}
+            .#{$s}-h-d-#{$colors_name}    {&:hover + label:before, &:focus + label:before {#{$style-check-hover}: $style-check-hover-type #{$colors-d} !important;}}
+        }
+    }
+}
+
+/* Define supp element colors, i think change to go with other */
+
+.d-whitesmoke     {border: $border-style $border-width $whitesmoke !important;}
+.d-h-whitesmoke   {&:hover {border: $border-style $border-width $whitesmoke !important;}}
+.c-whitesmoke     {background: $whitesmoke !important;}
+.b-h-whitesmoke   {&:hover {color: $whitesmoke !important;}}
+.b-whitesmoke     {background: $whitesmoke !important;}
+.b-h-whitesmoke   {&:hover {color: $whitesmoke !important;}}

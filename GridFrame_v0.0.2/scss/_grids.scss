@@ -1,0 +1,72 @@
+/* Défine grid system */
+
+/* regroup the "name": breakpoint */
+$breakpoint: ("": 0, "ms-": $ms, "ml-": $ml, "ts-": $ts, "tl-": $tl, "ds-": $ds, "dl-": $dl);
+
+$grid_name:     "row"          , "line"           , "col"             , "offset"            , "order";
+$grid_type:     "grid-row-end" , "grid-row-start" , "grid-column-end" , "grid-column-start" , "order";
+$grid_element:  "span"         , ""               , "span"            , ""                  , "";
+$grid_style: zip($grid_name, $grid_type, $grid_element);
+
+/* Grid system */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat($nb-columns, 1fr);
+    width: 100%;
+    
+    /* gutter of grid system */
+    
+    &.no-gutter  {grid-gap: 0 !important;}
+    &.gutter     {grid-gap: $gutter !important;}
+    &.mi-gutter  {grid-gap: $gutter / 2 !important;}
+    &.big-gutter {grid-gap: $gutter * 2 !important;}
+}
+
+/* Add gutter to all col-* class */
+
+[class*="col-"] {
+    padding: $col-gutter;
+}
+
+/* Auto col width flex element */
+
+.auto {
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    padding: $gutter;
+}
+
+/* Order flex only first and last, i think change this in flex.scss and add breakpoint */
+
+.order-first {order: -1;}
+.order-last  {order: 99;}
+
+/* Auto creat the col grid system */
+
+@each $grid_name, $grid_type, $grid_element in $grid_style {
+    @each $break_name, $break in $breakpoint {
+        @for $i from 1 through $nb-columns {
+            .#{$grid_name}-#{$break_name}#{$i} {
+                @if $break_name != "" {
+                    @media (min-width: #{$break}) {
+                        @if $grid_name == "offset" {
+                            #{$grid_type}: #{$grid_element} #{$i+1};
+                        } @else {
+                            #{$grid_type}: #{$grid_element} #{$i};
+                        }
+                    }
+                } @else {
+                    @if $grid_name == "offset" {
+                        #{$grid_type}: #{$grid_element} #{$i+1};
+                    } @else {
+                        #{$grid_type}: #{$grid_element} #{$i};
+                    }
+                }
+            }
+        }
+    }
+}
